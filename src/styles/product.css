@@ -1,0 +1,49 @@
+.card  {
+ width: 310px;
+}
+
+h2 {
+    color: #DBBE2C;
+  }
+h3 {
+    color: #181818;
+  }
+  .price, h4 {
+      color: #525174;
+  }
+
+  .add-btn, .check-btn {
+    background-color: #DBBE2C;
+  }
+  .card-page {
+    width: -webkit-fill-available;
+  }
+  .shop-btn {
+    background-color: #ffffff;
+    border: 1px solid #DBBE2C;
+    color: #DBBE2C;
+  }
+  .pochette {
+    width: 100px;
+  }
+  li:hover {
+    color: #DBBE2C;
+  }
+.input-quantity {
+    padding: 0 1em;
+  }
+  input.input-quantity {
+    max-width: 42px;
+}
+  button.btn-quantity {
+    background-color: #f2f2f2;
+    padding: 0.4em 1em;
+}
+
+
+.item {
+  justify-self: center;
+}
+.mobile {
+  width: 375px;
+}
