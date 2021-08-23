@@ -1,5 +1,5 @@
 
-import React  from "react";
+import {useState} from "react";
 import MenuProvider from "react-flexible-sliding-menu";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -18,6 +18,8 @@ import './styles/product.css';
 
 function App() {
 
+
+  const [cartItems,setCartItems] =  useState([]);
 
 
 
@@ -39,7 +41,7 @@ function App() {
           <Menu />
         </Route>
         <Route path="/cart">
-          <Cart />
+          <Cart  cartItems={cartItems}/>
         </Route>
         <Route path="/product/:id">
           <Product />
