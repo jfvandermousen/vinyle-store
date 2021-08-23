@@ -1,3 +1,5 @@
+//Player.js
+
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 // import 'react-h5-audio-player/lib/styles.less' Use LESS
@@ -5,7 +7,7 @@ import 'react-h5-audio-player/lib/styles.css';
 
 const Player = () => (
   <AudioPlayer
-    autoPlay
+    // autoPlay
     src="https://download.3mp3.buzz/e/Aphex-Twin-Actium.mp3"
     onPlay={e => console.log("onPlay")}
     // other props here

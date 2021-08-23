@@ -3,3 +3,7 @@
 @tailwind components;
 @import "./components.css";
 @tailwind utilities;
+
+img {
+    max-width: 280px;
+}
