@@ -8,7 +8,7 @@ import 'react-h5-audio-player/lib/styles.css';
 const Player = () => (
   <AudioPlayer
     // autoPlay
-    src="https://download.3mp3.buzz/e/Aphex-Twin-Actium.mp3"
+    src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3"
     onPlay={e => console.log("onPlay")}
     // other props here
   />

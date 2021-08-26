@@ -2,8 +2,8 @@
 
 import React, {useState, useEffect} from "react";
 import { AxiosGetSingleProd } from '../../Hooks/HttpSingleProd';
-
-import Player from './Player';
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 import Loader from '../Loader';
 import { Link, useParams } from 'react-router-dom';
 
@@ -45,7 +45,12 @@ function Product(props) {
                   <button onClick={()=> addToCart(product)}   className="add-btn text-white font-bold py-2 px-4 rounded">
                    <Link to ="/cart">ADD TO CART</Link> </button>
           </div>
-          <Player />
+          <AudioPlayer
+    // autoPlay
+    src={product.data.song}
+    onPlay={e => console.log("onPlay")}
+    // other props here
+  />
          
 
           </div>

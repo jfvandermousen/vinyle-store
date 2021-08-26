@@ -1,4 +1,5 @@
 import { useAxiosGet } from './Hooks/HttpReqProducts';
+import axios from 'axios';
 import React, {useState,useEffect} from "react";
 import MenuProvider from "react-flexible-sliding-menu";
 import { BrowserRouter as Router, Route, Switch,useParams } from 'react-router-dom';
@@ -36,6 +37,15 @@ const {products} = [url];
       setCartItems([...cartItems,{...product,qty:1}])
       console.log("New item")
     }
+  axios
+      .post('https://vinylalocamusic.herokuapp.com/api/orders', {
+        reference: '8',
+
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+  
 
   }
   const removeFromCart = (product) => {
@@ -58,7 +68,7 @@ const {products} = [url];
           <MenuProvider width="450px" MenuComponent={Menu} animation="push">
       
     <div className="App">
-      <Header />
+      <Header cartItems={cartItems}/>
     </div>
 
     <div className="content">

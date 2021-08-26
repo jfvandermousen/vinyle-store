@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 // import Quantity from './Quantity';
 
 function Cart(props) {
+
   const {cartItems,addToCart,removeFromCart} = props;
   const itemsPrice = cartItems.reduce((a,c)=>a+c * c.qty,0);
   const taxPrice =itemsPrice * 0.21;
@@ -14,6 +15,7 @@ function Cart(props) {
       <div className="flex flex-row justify-center flex-wrap ">
         {cartItems.length === 0 && <div>Cart is empty</div>}
         {cartItems.map((item) =>
+
         <div>
             <div key ={item.id} className="" >
             <div className="flex flex-row justify-start items-center flex-wrap ">
