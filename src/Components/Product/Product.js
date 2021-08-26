@@ -1,47 +1,22 @@
 //Product.js
-import axios from 'axios'
+
 import React, {useState, useEffect} from "react";
+import { AxiosGetSingleProd } from '../../Hooks/HttpSingleProd';
 
 import Player from './Player';
 import Loader from '../Loader';
 import { Link, useParams } from 'react-router-dom';
 
 
-function Product() {
+function Product(props) {
+  const {addToCart} = props;
+
   const {id} = useParams()
   const url  =`https://vinylalocamusic.herokuapp.com/api/products/${id}`;
-  const [product,setProduct] = useState({
-    loading :false,
-    data: null,
-    error : false
-  })
 
-  let content = null;
+  let product = AxiosGetSingleProd(url)
 
-  useEffect(()=> {
-    setProduct({
-      loading:true,
-      data:null,
-      error : false
-    })
-    axios.get(url)
-    .then(response => {
-      console.log(response.data)
-      setProduct({
-        loading:false,
-        data: response.data,
-        error : false
-      })
-    })
-    .catch(()=> {
-      setProduct({
-        loading:false,
-        data: null,
-        error : true
-      })
-    })
-
-  },[url])
+    let content = null;
   if(product.error) {
     content = <p> Refresh or try again </p>
   }
@@ -52,6 +27,7 @@ function Product() {
 
     if(product.data) {
       content = 
+      
         <div className="flex justify-center mb-4">
         <div className="card flexflex-col justify-center items-center ">
 
@@ -66,7 +42,7 @@ function Product() {
           <p className="font-italic text-left mb-4">{product.data.description} </p>
           <div className="label-cat my-8 w-full flex  justify-between items-center">
                   <p className="price font-bold text-xl">{product.data.price}€</p>
-                  <button className="add-btn text-white font-bold py-2 px-4 rounded">
+                  <button onClick={()=> addToCart(product)}   className="add-btn text-white font-bold py-2 px-4 rounded">
                    <Link to ="/cart">ADD TO CART</Link> </button>
           </div>
           <Player />

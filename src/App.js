@@ -1,7 +1,7 @@
-
-import {useState} from "react";
+import { useAxiosGet } from './Hooks/HttpReqProducts';
+import React, {useState,useEffect} from "react";
 import MenuProvider from "react-flexible-sliding-menu";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch,useParams } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header';
 import Cart from './Components/Cart';
@@ -16,10 +16,39 @@ import './styles/product.css';
 
 
 
+
+
 function App() {
 
+const url  ='https://vinylalocamusic.herokuapp.com/api/products';
 
-  const [cartItems,setCartItems] =  useState([]);
+const {products} = [url];
+
+
+  const [cartItems,setCartItems] = useState([]);
+  const addToCart = (product) => {
+    const exist = cartItems.find((x) => x.data.id === product.data.id);
+    if(exist) {
+      setCartItems(cartItems.map((x) => x.data.id === product.data.id ? {...exist,qty:exist.qty +1 } :x
+        ))
+        console.log("already exit");
+    } else {
+      setCartItems([...cartItems,{...product,qty:1}])
+      console.log("New item")
+    }
+
+  }
+  const removeFromCart = (product) => {
+    const exist = cartItems.find((x) => x.data.id === product.data.id);
+    if(exist.qty === 1) {
+      setCartItems(cartItems.filter((x) => x.data.id !== product.data.id ))
+    } else {
+      setCartItems(cartItems.map((x) => 
+        x.data.id === product.data.id ? {...exist,qty:exist.qty -1 } :x
+        ))
+    }
+  }
+
 
 
 
@@ -41,13 +70,13 @@ function App() {
           <Menu />
         </Route>
         <Route path="/cart">
-          <Cart  cartItems={cartItems}/>
+          <Cart cartItems={cartItems} addToCart={addToCart} removeFromCart= {removeFromCart} />
         </Route>
         <Route path="/product/:id">
-          <Product />
+          <Product addToCart={addToCart}  cartItems={cartItems} />
         </Route>
         <Route path="/productslist">
-          <ProductsList   />
+          <ProductsList addToCart ={addToCart}  />
 
         </Route>
       </Switch>
