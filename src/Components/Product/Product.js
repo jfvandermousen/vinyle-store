@@ -37,7 +37,6 @@ function Product(props) {
   if(product.loading) {
     content = <Loader />
   }
-
     if(product.data) {
 
       axios.get(`https://vinylalocamusic.herokuapp.com${product.data.categories}`)
@@ -48,12 +47,6 @@ function Product(props) {
         
       } 
       )
-      
-        
-
-        
-
-    
 
       content = 
       

@@ -24,17 +24,17 @@ function App() {
 
 
 
-const [currentdate,setcurrentDate] = useState('')
-useEffect(()=>{
-  var date = new Date().getDate()
-  var month =new Date().getMonth() +1
-  var year = new Date().getFullYear()
-  var hours = new Date().getHours()
-  setcurrentDate(
-    date +'/' + month + '/' + year +'' + hours
-  )
+// const [currentdate,setcurrentDate] = useState('')
+// useEffect(()=>{
+//   var date = new Date().getDate()
+//   var month =new Date().getMonth() +1
+//   var year = new Date().getFullYear()
+//   var hours = new Date().getHours()
+//   setcurrentDate(
+//     date +'/' + month + '/' + year +'' + hours
+//   )
 
-},[])
+// },[])
 
 
   const [cartItems,setCartItems] = useState([]);
