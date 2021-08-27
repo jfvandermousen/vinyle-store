@@ -18,7 +18,8 @@ export function AxiosGetSingleProd(url){
         })
         axios.get(url)
         .then(response => {
-          console.log(response.data)
+          console.log(response.data);
+
           setProduct({
             loading:false,
             data: response.data,

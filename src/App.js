@@ -49,19 +49,19 @@ useEffect(()=>{
       console.log()
     }
 
-  axios
-      .post('https://vinylalocamusic.herokuapp.com/api/orders', {
-        reference: "747365686767",
-        createdAt:currentdate.toString,
-        user:null,
-        carrier:null,
-        product:['product'].toString,
-        moreInformations:null
+  // axios
+  //     .post('https://vinylalocamusic.herokuapp.com/api/orders', {
+  //       reference: "747365686767",
+  //       createdAt:currentdate.toString,
+  //       user:null,
+  //       carrier:null,
+  //       product:['product'].toString,
+  //       moreInformations:null
 
-      })
-      .then((response) => {
-        console.log(response.data);
-      });
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     });
   
 
   }

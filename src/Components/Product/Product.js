@@ -1,19 +1,18 @@
 //Product.js
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { AxiosGetSingleProd } from '../../Hooks/HttpSingleProd';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import Loader from '../Loader';
 import { Link, useParams } from 'react-router-dom';
 import axios from "axios";
-import { ReplyIcon } from "@heroicons/react/outline";
+// import { ReplyIcon } from "@heroicons/react/outline";
 
 
 
 
 
 function Product(props) {
-
 
 
 
@@ -41,11 +40,19 @@ function Product(props) {
 
     if(product.data) {
 
-      // axios.get(`https://vinylalocamusic.herokuapp.com/api/categories/2`)
-      // .then(response => {
-      //   let name = response.data.name
-      //   console.log(response.data.name)
-      //   })
+      axios.get(`https://vinylalocamusic.herokuapp.com${product.data.categories}`)
+      .then(response => {
+
+        console.log(response.data.name)
+        // let cat = response.data.name
+        
+      } 
+      )
+      
+        
+
+        
+
     
 
       content = 
@@ -58,7 +65,7 @@ function Product(props) {
           <h3  className="flex self-start font-bold text-xl mb-4 ">{product.data.artist}</h3>
           <div className="label-cat mb-8 w-full flex  justify-between">
               <p>{product.data.label}</p>
-              <p>{product.data.categories}</p>
+              <p>{}</p>
           </div>
           <h4 className="self-start font-bold  text-left ">Description</h4>
           <p id="desc" className="font-italic text-left mb-4">{product.data.description}</p>
@@ -78,11 +85,7 @@ function Product(props) {
           </div>
         </div>
     }
-    //remove html tags from a string, leaving only the inner text
-    function removeHTML(){ 
-      var desc = document.getElementById('desc')
-      desc.replaceChild('<div>',''); 
-    }
+
 
 
 
