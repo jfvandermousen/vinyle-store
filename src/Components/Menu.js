@@ -21,6 +21,9 @@ export default function Menu() {
             <Link to="/cart">cart</Link>
           </li>
           <li className="text-vinylpurple font-bold uppercase text-3xl leading-10 mt-2 tracking-wide">
+            <Link to="/checkout">checkout</Link>
+          </li>
+          <li className="text-vinylpurple font-bold uppercase text-3xl leading-10 mt-2 tracking-wide">
             <Link to="/contact">contact</Link>
           </li>
         </ul>

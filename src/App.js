@@ -1,4 +1,4 @@
-import { useAxiosGet } from './Hooks/HttpReqProducts';
+
 import axios from 'axios';
 import React, {useState,useEffect} from "react";
 import MenuProvider from "react-flexible-sliding-menu";
@@ -7,6 +7,7 @@ import './App.css';
 import Header from './Components/Header';
 import Cart from './Components/Cart';
 import Home from './Components/Home';
+import Checkout from './Components/Checkout';
 import Product from './Components/Product/Product';
 import Menu from './Components/Menu';
 import  ProductsList from "./Components/Product/ProductsList";
@@ -21,9 +22,19 @@ import './styles/product.css';
 
 function App() {
 
-const url  ='https://vinylalocamusic.herokuapp.com/api/products';
 
-const {products} = [url];
+
+const [currentdate,setcurrentDate] = useState('')
+useEffect(()=>{
+  var date = new Date().getDate()
+  var month =new Date().getMonth() +1
+  var year = new Date().getFullYear()
+  var hours = new Date().getHours()
+  setcurrentDate(
+    date +'/' + month + '/' + year +'' + hours
+  )
+
+},[])
 
 
   const [cartItems,setCartItems] = useState([]);
@@ -32,18 +43,24 @@ const {products} = [url];
     if(exist) {
       setCartItems(cartItems.map((x) => x.data.id === product.data.id ? {...exist,qty:exist.qty +1 } :x
         ))
-        console.log("already exit");
+        console.log(product.data);
     } else {
       setCartItems([...cartItems,{...product,qty:1}])
-      console.log("New item")
+      console.log()
     }
+
   axios
       .post('https://vinylalocamusic.herokuapp.com/api/orders', {
-        reference: '8',
+        reference: "747365686767",
+        createdAt:currentdate.toString,
+        user:null,
+        carrier:null,
+        product:['product'].toString,
+        moreInformations:null
 
       })
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
       });
   
 
@@ -82,6 +99,9 @@ const {products} = [url];
         <Route path="/cart">
           <Cart cartItems={cartItems} addToCart={addToCart} removeFromCart= {removeFromCart} />
         </Route>
+        <Route path="/checkout">
+          <Checkout  />
+        </Route>
         <Route path="/product/:id">
           <Product addToCart={addToCart}  cartItems={cartItems} />
         </Route>
@@ -96,6 +116,8 @@ const {products} = [url];
     </Router>
     </div>
   );
+
+
 }
 
 export default App;
