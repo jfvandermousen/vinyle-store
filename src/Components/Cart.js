@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 function Cart(props) {
 
-  const {cartItems,addToCart,removeFromCart} = props;
-  const itemsPrice = cartItems.reduce((a,c)=>a+c * c.qty,0);
+  const {cartItems,addToCart,removeFromCart,removeAll} = props;
+  const itemsPrice = cartItems.reduce((a,c)=> a+c.data.price * c.qty,0);
   const taxPrice =itemsPrice * 0.21;
   
 
@@ -29,7 +29,7 @@ function Cart(props) {
                   </div>
               </div>
               <div>
-                    <button  className="">
+                    <button onClick={()=>removeAll(item)} className="">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
@@ -57,7 +57,7 @@ function Cart(props) {
       )}
       <div className="label-cat mt-4 w-full flex px-6 justify-between items-center">
               <h3 className="font-bold text-xl ">TOTAL</h3>
-              <p className="price font-bold text-xl">€</p>
+              <p className="price font-bold text-xl">{itemsPrice }€</p>
               </div>
       
       <div className="">

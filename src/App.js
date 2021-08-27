@@ -60,7 +60,7 @@ useEffect(()=>{
 
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
       });
   
 
@@ -75,6 +75,12 @@ useEffect(()=>{
         ))
     }
   }
+  const removeAll = (product) => {
+    const exist = cartItems.find((x) => x.data.id === product.data.id);
+    if(exist.qty >= 1) {
+      setCartItems(cartItems.filter((x) => x.data.id !== product.data.id ))
+    }
+  }
 
 
 
@@ -85,7 +91,7 @@ useEffect(()=>{
           <MenuProvider width="450px" MenuComponent={Menu} animation="push">
       
     <div className="App">
-      <Header cartItems={cartItems}/>
+      <Header countCartItems={cartItems.length}/>
     </div>
 
     <div className="content">
@@ -97,7 +103,7 @@ useEffect(()=>{
           <Menu />
         </Route>
         <Route path="/cart">
-          <Cart cartItems={cartItems} addToCart={addToCart} removeFromCart= {removeFromCart} />
+          <Cart removeAll={removeAll}cartItems={cartItems} addToCart={addToCart} removeFromCart= {removeFromCart} />
         </Route>
         <Route path="/checkout">
           <Checkout  />

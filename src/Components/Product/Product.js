@@ -58,7 +58,7 @@ function Product(props) {
           <h3  className="flex self-start font-bold text-xl mb-4 ">{product.data.artist}</h3>
           <div className="label-cat mb-8 w-full flex  justify-between">
               <p>{product.data.label}</p>
-              <p>{}</p>
+              <p>{product.data.categories}</p>
           </div>
           <h4 className="self-start font-bold  text-left ">Description</h4>
           <p id="desc" className="font-italic text-left mb-4">{product.data.description}</p>
